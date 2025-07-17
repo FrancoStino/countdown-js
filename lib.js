@@ -1,7 +1,7 @@
 // Countdown timer
 
 const indicatori = document.querySelectorAll('#time span'),
-  scadenza = new Date(2026, 10, 1, 0, 0, 0, 0),
+  scadenza = new Date(2025, 6, 22, 21, 0, 0, 0),
   ms_scadenza = scadenza.getTime(),
   ms_in_giorno = 24 * 60 * 60 * 1000,
   ms_in_ora = 60 * 60 * 1000,
@@ -19,6 +19,11 @@ function countdown() {
 
   let time = [giorni, ore, minuti, secondi]
 
+  if (ms_rimanenti < 0) {
+    clearInterval(countdownInterval)
+    return;
+  }
+
   indicatori.forEach((span, index) => {
     span.innerHTML = time[index]
   })
@@ -27,3 +32,4 @@ function countdown() {
 }
 
 const countdownInterval = setInterval(countdown, 1000);
+countdown()
